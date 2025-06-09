@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "my_package"
+name = "tma-functions"
 version = "0.1.0"
-description = "A small example pip package"
+description = "Helper functions for Telegram Mini Apps."
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
@@ -23,7 +23,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-dependencies = []
+dependencies = ["pydantic"]
 
 [project.optional-dependencies]
 dev = [
@@ -35,16 +35,16 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/my_package"
-Documentation = "https://github.com/yourusername/my_package#readme"
-Repository = "https://github.com/yourusername/my_package.git"
-Issues = "https://github.com/yourusername/my_package/issues"
+Homepage = "https://github.com/romankurnovskii/tma-functions"
+Documentation = "https://github.com/romankurnovskii/tma-functions#readme"
+Repository = "https://github.com/romankurnovskii/tma-functions.git"
+Issues = "https://github.com/romankurnovskii/tma-functions/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["my_package"]
+packages = ["tma_functions"]
 
 [tool.ruff]
-line-length = 88
+line-length = 120
 target-version = "py38"
 select = ["E", "F", "B", "I", "N", "UP", "PL", "RUF"]
 ignore = []
@@ -53,7 +53,7 @@ ignore = []
 known-first-party = ["my_package"]
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.10"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
