@@ -67,6 +67,14 @@ mypy .
 ruff check .
 ```
 
+## Deploy
+
+```sh
+rm -rf ./dist
+hatch build
+twine upload ./dist/*
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
