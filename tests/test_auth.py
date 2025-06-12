@@ -8,7 +8,17 @@ def test_validate_auth_data_valid():
         "%22last_name%22%3A%22Kibenko%22%2C%22username%22%3A%22vdkfrost%22%2C%22language_code%22%3A%22ru%22%2C"
         "%22is_premium%22%3Atrue%7D&auth_date=1662771648&hash=c501b71e775f74ce10e377dea85a7ea24ecd640b223ea86dfe453e0eaed2e2b2"
     )
-    assert validate_auth_data(bot_token, auth_data) is True
+
+    expected = {
+        "id": 279058397,
+        "first_name": "Vladislav",
+        "last_name": "Kibenko",
+        "username": "vdkfrost",
+        "language_code": "ru",
+        "is_premium": True,
+        "auth_date": 1662771648,
+    }
+    assert validate_auth_data(bot_token, auth_data) == expected
 
 
 def test_validate_auth_data_invalid_hash():
@@ -18,7 +28,7 @@ def test_validate_auth_data_invalid_hash():
         "%22last_name%22%3A%22Kibenko%22%2C%22username%22%3A%22vdkfrost%22%2C%22language_code%22%3A%22ru%22%2C"
         "%22is_premium%22%3Atrue%7D&auth_date=1662771648&hash=invalid_hash"
     )
-    assert validate_auth_data(bot_token, auth_data) is False
+    assert validate_auth_data(bot_token, auth_data) is None
 
 
 def test_validate_auth_data_missing_hash():
@@ -27,10 +37,10 @@ def test_validate_auth_data_missing_hash():
         'auth_date=1678886400\nquery_id=AAABAQABAAAAAQABAAAAAQAB\nuser={"id":123,"first_name":"John","last_name":"Doe",'
         '"username":"john_doe","language_code":"en","allows_write_to_pm":true,"photo_url":"https://example.com/photo.jpg"}'
     )
-    assert validate_auth_data(bot_token, auth_data) is False
+    assert validate_auth_data(bot_token, auth_data) is None
 
 
 def test_validate_auth_data_invalid_data_format():
     bot_token = "123456:ABC-DEF1234ghIkl-799-jkm-o_o_o_o"
     auth_data = "not_a_valid_format"
-    assert validate_auth_data(bot_token, auth_data) is False
+    assert validate_auth_data(bot_token, auth_data) is None
