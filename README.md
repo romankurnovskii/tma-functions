@@ -26,8 +26,14 @@ from tma_functions.auth import validate_auth_data
 bot_token = "YOUR_BOT_TOKEN"
 auth_data = "auth_date=1678886400\nhash=YOUR_HASH\nquery_id=YOUR_QUERY_ID\nuser={\"id\":123,\"first_name\":\"John\",\"last_name\":\"Doe\",\"username\":\"john_doe\",\"language_code\":\"en\",\"allows_write_to_pm\":true,\"photo_url\":\"https://example.com/photo.jpg\"}"
 
-is_valid = validate_auth_data(bot_token, auth_data)
-print(f"Auth data valid: {is_valid}")
+user_data = validate_auth_data(bot_token, auth_data)
+if user_data is not None:
+    print(f"User ID: {user_data['id']}")
+    print(f"Username: {user_data['username']}")
+    print(f"Full name: {user_data['first_name']} {user_data['last_name']}")
+    print(f"Language: {user_data['language_code']}")
+else:
+    print("Invalid auth data")
 ```
 
 ## Development
