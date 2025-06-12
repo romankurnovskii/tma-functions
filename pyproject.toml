@@ -7,15 +7,14 @@ name = "tma-functions"
 version = "0.1.0"
 description = "Helper functions for Telegram Mini Apps."
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 license = "MIT"
 authors = [
-    { name = "Roman Kurnovskii", url = "https://romankurnovskii.com" }
+    { name = "Roman Kurnovskii" }
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -45,12 +44,12 @@ packages = ["tma_functions"]
 
 [tool.ruff]
 line-length = 120
-target-version = "py38"
-select = ["E", "F", "B", "I", "N", "UP", "PL", "RUF"]
-ignore = []
+target-version = "py39"
+lint.select = ["E", "F", "B", "I", "N", "UP", "PL", "RUF"]
+lint.ignore = []
 
-[tool.ruff.isort]
-known-first-party = ["my_package"]
+[tool.ruff.lint.isort]
+known-first-party = ["tma-functions"]
 
 [tool.mypy]
 python_version = "3.10"
