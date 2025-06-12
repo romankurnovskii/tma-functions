@@ -48,6 +48,7 @@ target-version = "py39"
 lint.select = ["E", "F", "B", "I", "N", "UP", "PL", "RUF"]
 lint.ignore = []
 
+
 [tool.ruff.lint.isort]
 known-first-party = ["tma-functions"]
 
