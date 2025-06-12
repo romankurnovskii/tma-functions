@@ -15,8 +15,7 @@ def test_validate_auth_data_valid():
         "last_name": "Kibenko",
         "username": "vdkfrost",
         "language_code": "ru",
-        "is_premium": True,
-        "auth_date": 1662771648,
+        "is_premium": True
     }
     assert validate_auth_data(bot_token, auth_data) == expected
 

@@ -2,7 +2,7 @@ import hashlib
 import hmac
 import json
 from operator import itemgetter
-from typing import Optional, Dict
+from typing import Optional, Dict, Any
 from urllib.parse import parse_qsl
 
 from pydantic import BaseModel
@@ -31,7 +31,7 @@ class TMUser(BaseModel):
 #    result as hex symbols sequence.
 # 5. Compare the hash value received in the 1-st step with the result of the 4-th step.
 # 6. If these values are equal, passed init data can be trusted.
-def validate_auth_data(bot_token: str, auth_data: str) -> Optional[Dict[str, any]]:
+def validate_auth_data(bot_token: str, auth_data: str) -> Optional[Dict[str, Any]]:
     """Validates initData from the Telegram Mini App.
     You can find more info here:
     https://core.telegram.org/bots/webapps#validating-data-received-via-the-mini-app.
@@ -48,7 +48,7 @@ def validate_auth_data(bot_token: str, auth_data: str) -> Optional[Dict[str, any
     """
 
     try:
-        auth_data = auth_data.replace("tma ", "")
+        auth_data = auth_data.removeprefix("tma ")
         parsed_data = dict(parse_qsl(auth_data, strict_parsing=True))
 
         if "hash" not in parsed_data:
@@ -73,8 +73,7 @@ def validate_auth_data(bot_token: str, auth_data: str) -> Optional[Dict[str, any
         calculated_hash = hmac.new(key=calculated_hash, msg=data_check_string.encode(), digestmod=hashlib.sha256).hexdigest()
 
         if hmac.compare_digest(calculated_hash, received_hash):
-            user_data = json.loads(parsed_data.get('user', '{}'))
-            return user_data
+            return json.loads(parsed_data.get('user', '{}'))
 
         return None
     except Exception:
