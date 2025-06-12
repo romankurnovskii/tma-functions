@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = "MIT"
 authors = [
-    { name = "Roman Kurnovskii", url = "https://romankurnovskii.com" }
+    { name = "Roman Kurnovskii" }
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -45,11 +45,12 @@ packages = ["tma_functions"]
 [tool.ruff]
 line-length = 120
 target-version = "py39"
-select = ["E", "F", "B", "I", "N", "UP", "PL", "RUF"]
-ignore = []
+lint.select = ["E", "F", "B", "I", "N", "UP", "PL", "RUF"]
+lint.ignore = []
 
-[tool.ruff.isort]
-known-first-party = ["my_package"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["tma-functions"]
 
 [tool.mypy]
 python_version = "3.10"
